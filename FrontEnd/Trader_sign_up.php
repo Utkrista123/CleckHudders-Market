@@ -1,92 +1,83 @@
 <?php
-    session_start();
-    require '../vendor/autoload.php'; // Load PHPMailer
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-
-    if(isset($_POST['signup'])){
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-
-        $otp = sendConfirmationEmail($email, $name);
-        if($otp){
-            $_SESSION['otp'] = $otp;
-            $_SESSION['email'] = $email;
-            $_SESSION['otp_expire'] = time() +240;
-            header("Location: verify-otp.php");
-            exit();
-        }else{
-            echo "Error sending email.";
-        }
-    }
-
-    function sendConfirmationEmail($email, $name){
-        $mail = new PHPMailer(true);
-        $otp = rand(10000, 99999); // Generates a 5 digit OTP
-
-        try{
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'utkristashrestha984@gmail.com';
-            $mail->Password = 'smvt hrux xvhu hgmr';
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
-
-            $mail->setFrom('utkristashrestha984@gmail.com', 'CheckHudders Market');
-            $mail->addAddress($email, $name);
-
-            $mail->isHTML(true);
-            $mail->Subject = 'Sign up Confirmation';
-            $mail->Body = "<h1>Welcome, $name!</h1><p>Your OTP is: <strong>$otp</strong></p>";
-
-            $mail->send();
-            return $otp;
-        }catch(Exception $e){
-            echo "Email could not be sent. Mailer Error: {$mail->ErrorInfo}";
-            return false;
-        }
-
-    }
+session_start();
+$email = $_POST['email'] ?? '';
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
-    <link rel="stylesheet" href="signupcss.css">
+    <link rel="stylesheet" href="signup.css">
 </head>
+
 <body>
     <div class="background">
         <div class="overlay"></div>
     </div>
-    
+
     <div class="signup-container">
         <h2>GETTING STARTED</h2>
         <p>CREATE A NEW ACCOUNT</p>
-        
-        <form action="" method="POST">
-            <input type="text" name="name" placeholder="Full Name" required>
 
-            <input type="text" name="shop" placeholder="Shop Name" required>
-            
+        <form action="register_process.php" method="POST" onsubmit="return validatePassword()">
+            <input type="text" id="fullname" name="fullname" placeholder="Full Name" required>
+
+            <select name="category" class="custom-select" required>
+                <option value="" disabled selected class="placeholder-option">Select a Category</option>
+                <option value="butcher">Butcher</option>
+                <option value="bakery">Bakery</option>
+                <option value="fishmonger">Fishmonger</option>
+                <option value="greengrocer">Greengrocer</option>
+                <option value="delicatessen">Delicatessen</option>
+            </select>
+
+            <input type="email" id="email" name="email" placeholder="Someone@gmail.com" value="<?php echo htmlspecialchars($email); ?>" required>
+
             <div class="contact-container">
-                <input type="text" class="contact-code" placeholder="+44" required readonly>
-                <input type="text" name="Phone Number" class="contact-input" placeholder="Enter Contact Number" required>
+                <input type="text" class="contact-code" placeholder="+977" required readonly>
+                <input type="tel" id="phone" name="phone" class="contact-input" placeholder="Enter Contact Number" required>
             </div>
 
-            <input type="email" name="email" placeholder="Someone@gmail.com" required>
+            <p>First Shop Information</p>
 
-            <input type="password" name="password" placeholder="Password" required>
+            <!-- First Shop -->
+            <input type="text" name="shop_name1" placeholder="First Shop Name" required>
 
-            <input type="password" name="password" placeholder="Confirm Password" required>
+            <!-- First Shop Contact & Email -->
+            <input type="email" id="email1" name="email1" placeholder="First Shop Email" required>
+            <div class="contact-container">
+                <input type="text" class="contact-code" placeholder="+977" required readonly>
+                <input type="tel" id="phone1" name="phone1" class="contact-input" placeholder="First Shop Contact Number" required>
+            </div>
+
+            <p>Second Shop Information</p>
+
+            <!-- Second Shop -->
+            <input type="text" name="shop_name2" placeholder="Second Shop Name" required>
+
+            <!-- Second Shop Contact & Email -->
+            <input type="email" id="email2" name="email2" placeholder="Second Shop Email" required>
+            <div class="contact-container">
+                <input type="text" class="contact-code" placeholder="+977" required readonly>
+                <input type="tel" id="phone2" name="phone2" class="contact-input" placeholder="Second Shop Contact Number" required>
+            </div>
+
+            <!-- Common Password Section -->
+            <div class="contact-container">
+                <input type="password" id="password" name="password" placeholder="Enter a password"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must be at least 8 characters long, Uppercase letters and numbers included"
+                    required>
+            </div>
+
+            <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm Password" required>
 
             <div class="terms">
-                <input type="checkbox" required>
-                <span>I agree to the Terms of Service and Privacy Policy.</span>
+                <input type="checkbox" id="terms" name="terms" required>
+                <span>I agree to the <a href="terms.php">Terms of Service and Privacy Policy</a>.</span>
             </div>
 
             <div>
@@ -94,17 +85,17 @@
             </div>
 
             <p>OR</p>
-        <div class="social-icons">
-            <img src="image/google.svg" width="10" height="10" alt="Google">
-            <img src="image/apple.svg"  alt="Apple">
-            <img src="image/facebook.svg" alt="Facebook">
-        </div>
+            <div class="social-icons">
+                <img src="image/google.svg" width="10" height="10" alt="Google">
+                <img src="image/apple.svg" alt="Apple">
+                <img src="image/facebook.svg" alt="Facebook">
+            </div>
 
-        <p>Already have an account? <a href="login.php">Log in</a></p>
+            <p>Already have an account? <a href="login.php">Log in</a></p>
         </form>
+
 
     </div>
 </body>
+
 </html>
-
-
