@@ -26,8 +26,8 @@ body {
     clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
 }
 
-/* login Container */
-.login-container {
+/* Signup Container */
+.signup-container {
     position: relative;
     width: 572px;
     padding: 20px;
@@ -36,15 +36,16 @@ body {
     box-shadow: 0px 0px 10px 14px rgba(97, 96, 96, 0.33);
     text-align: center;
     z-index: 1;
+    margin-top: 500px;
 }
 
-.login-container h2 {
+.signup-container h2 {
     color: rgb(97, 97, 97);
     font-size: 31.25px;
     font-weight: 700;
 }
 
-.login-container p {
+.signup-container p {
     color: rgb(33, 33, 33);
     font-size: 12.8px;
     font-weight: 700;
@@ -60,25 +61,88 @@ input {
     font-size: 14px;
 }
 
+/* Category */
+.custom-select {
+    width: 401px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid rgb(97, 97, 97);
+    border-radius: 7px;
+    background-color: #fff;
+    font-size: 14px;
+    color: #333;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="gray" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 20px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.custom-select:focus {
+    border-color: black;
+    border-width: 3px;
+    padding: 9px;
+    outline: none;
+}
+
+
+/* Contact Container */
+.contact-container {
+    display: flex; /* Enables flexbox */
+    align-items: center; /* Align items vertically */
+    gap: 10px; /* Adds space between the inputs */
+    justify-content: center; /* Center align the items horizontally */
+    width: 100%; /* Ensure the container takes full width */
+    max-width: 390px; /* Set a maximum width */
+    margin: 0 85px; /* Centers the container */
+}
+
+/* Contact Code Input */
+.contact-code {
+    width: 100%; /* Ensure the width is relative to the container */
+    max-width: 80px; /* You can adjust the max width as per your design */
+    padding: 10px;
+    text-align: center;
+    border: 1px solid rgb(97, 97, 97);
+    border-radius: 7px;
+    font-size: 14px;
+}
+
+/* Contact Number Input */
+.contact-input {
+    width: 100%; /* Ensure the width is relative to the container */
+    max-width: 280px; /* You can adjust the max width as per your design */
+    padding: 10px;
+    text-align: left;
+    border: 1px solid rgb(97, 97, 97);
+    border-radius: 7px;
+    font-size: 14px;
+}
 
 
 
+.contact-input .flag {
+    font-size: 18px;
+}
 
-/* keep me logged in */
-
+/* Terms and Conditions */
 .terms {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Align to the left */
-    padding: 0 85px;
+    justify-content: center;
     gap: 8px;
     font-size: 14px; /* Match font size with other inputs */
     color: rgb(97, 97, 97); /* Text color */
     width: 100%; /* Full width */
     max-width: 380px; /* Match width of other input fields */
-    
-    white-space: nowrap; /* Prevent text from wrapping */
+    padding: 0 65px; /* Remove padding to avoid unnecessary space */
+    text-align: center; /* Align text to the left */
 }
+
 
 /* Style for the checkbox */
 .terms input[type="checkbox"] {
@@ -102,34 +166,17 @@ input {
 .terms input[type="checkbox"]:checked::before {
     content: '✔'; /* Checkmark */
     position: absolute;
-    top: 2px;
-    left: 6px;
+    top: 0px;
+    left: 5px;
     font-size: 14px;
     color: white;
 }
 
 
-/* Style for the forgot password link */
-.forgotpw {
-    display: inline-flex; /* Use inline-flex to avoid block behavior */
-    align-items: center;
-    justify-content: flex-end; /* Align to the left */
-    font-size: 14px;
-    color: rgb(254, 148, 74);
-    width: 100%; /* Ensure it takes full width if necessary */
-}
-
-
-
-
-.forgotpw a:hover {
-    text-decoration: underline; /* Underline on hover */
-}
-
 /* Signup Button */
 button {
-    width: 380px;
-    padding: 20px 20px;
+    width: 390px;
+    padding: 15px;
     border-radius: 11px;
     border: none;
     background: rgb(254, 148, 74);
@@ -157,7 +204,7 @@ button:hover {
 }
 
 /* Login Link */
-.login-container a {
+.signup-container a {
     color: rgb(254, 148, 74);
     text-decoration: none;
     font-weight: bold;

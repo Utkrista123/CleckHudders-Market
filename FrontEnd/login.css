@@ -26,8 +26,8 @@ body {
     clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
 }
 
-/* Signup Container */
-.signup-container {
+/* login Container */
+.login-container {
     position: relative;
     width: 572px;
     padding: 20px;
@@ -38,13 +38,13 @@ body {
     z-index: 1;
 }
 
-.signup-container h2 {
+.login-container h2 {
     color: rgb(97, 97, 97);
     font-size: 31.25px;
     font-weight: 700;
 }
 
-.signup-container p {
+.login-container p {
     color: rgb(33, 33, 33);
     font-size: 12.8px;
     font-weight: 700;
@@ -59,57 +59,25 @@ input {
     border-radius: 7px;
     font-size: 14px;
 }
-/* Contact Container */
-.contact-container {
-    display: flex; /* Enables flexbox */
-    align-items: center; /* Align items vertically */
-    gap: 10px; /* Adds space between the inputs */
-    justify-content: center; /* Center align the items horizontally */
-    width: 100%; /* Ensure the container takes full width */
-    max-width: 390px; /* Set a maximum width */
-    margin: 0 85px; /* Centers the container */
-}
-
-/* Contact Code Input */
-.contact-code {
-    width: 100%; /* Ensure the width is relative to the container */
-    max-width: 80px; /* You can adjust the max width as per your design */
-    padding: 10px;
-    text-align: center;
-    border: 1px solid rgb(97, 97, 97);
-    border-radius: 7px;
-    font-size: 14px;
-}
-
-/* Contact Number Input */
-.contact-input {
-    width: 100%; /* Ensure the width is relative to the container */
-    max-width: 280px; /* You can adjust the max width as per your design */
-    padding: 10px;
-    text-align: left;
-    border: 1px solid rgb(97, 97, 97);
-    border-radius: 7px;
-    font-size: 14px;
-}
 
 
 
-.contact-input .flag {
-    font-size: 18px;
-}
 
-/* Terms and Conditions */
+
+/* keep me logged in */
+
 .terms {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* Align to the left */
+    padding: 0 85px;
     gap: 8px;
     font-size: 14px; /* Match font size with other inputs */
     color: rgb(97, 97, 97); /* Text color */
     width: 100%; /* Full width */
     max-width: 380px; /* Match width of other input fields */
-    padding: 0 65px; /* Remove padding to avoid unnecessary space */
-    text-align: center; /* Align text to the left */
+    
+    white-space: nowrap; /* Prevent text from wrapping */
 }
 
 /* Style for the checkbox */
@@ -134,17 +102,34 @@ input {
 .terms input[type="checkbox"]:checked::before {
     content: '✔'; /* Checkmark */
     position: absolute;
-    top: 2px;
-    left: 6px;
+    top: 0px;
+    left: 5px;
     font-size: 14px;
     color: white;
 }
 
 
+/* Style for the forgot password link */
+.forgotpw {
+    display: inline-flex; /* Use inline-flex to avoid block behavior */
+    align-items: center;
+    justify-content: flex-end; /* Align to the left */
+    font-size: 14px;
+    color: rgb(254, 148, 74);
+    width: 100%; /* Ensure it takes full width if necessary */
+}
+
+
+
+
+.forgotpw a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
 /* Signup Button */
 button {
-    width: 390px;
-    padding: 15px;
+    width: 380px;
+    padding: 20px 20px;
     border-radius: 11px;
     border: none;
     background: rgb(254, 148, 74);
@@ -172,7 +157,7 @@ button:hover {
 }
 
 /* Login Link */
-.signup-container a {
+.login-container a {
     color: rgb(254, 148, 74);
     text-decoration: none;
     font-weight: bold;

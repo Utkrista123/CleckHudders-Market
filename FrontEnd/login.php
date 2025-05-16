@@ -1,37 +1,60 @@
 <?php
 session_start();
-require_once '../BackEnd/database/dbconnection.php';
- 
+include "../backend/database/connect.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
+$error_msg = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email = trim($_POST['email']);
     $password = $_POST['password'];
 
-    $db = getDBConnection();
-
-    if ($db) {
-        $stmt = $db->prepare("SELECT * FROM users WHERE email = :email");
-        $stmt->execute(['email' => $email]);
-        $user = $stmt->fetch();
-
-        if ($user && password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['user_id'];
-            $_SESSION['role'] = $user['role'];
-
-            // Redirect based on role
-            if ($user['role'] == 'admin') {
-                header("Location: admin.php");
-            } elseif ($user['role'] == 'trader') {
-                header("Location: trader-dashboard.php");
-            } elseif ($user['role'] == 'customer') {
-                header("Location: http://localhost/Team Project/CleckHuddersMarket/3. Executing phase/Code/FrontEnd/home.php");
-            }
-            exit();
-        } else {
-            echo "Invalid email or password.";
-        }
+    if (empty($email) || empty($password)) {
+        $error_msg = "Please enter both email and password.";
     } else {
-        echo "Database connection failed.";
+        $conn = getDBConnection();
+
+        if ($conn) {
+            $sql = "SELECT * FROM users WHERE email = :email";
+            $stmt = oci_parse($conn, $sql);
+            oci_bind_by_name($stmt, ":email", $email);
+
+            if (oci_execute($stmt)) {
+                $user = oci_fetch_array($stmt, OCI_ASSOC);
+
+                if ($user && password_verify($password, $user['PASSWORD'])) {
+                    // Store session data
+                    $_SESSION['user_id'] = $user['USER_ID'];
+                    $_SESSION['role'] = $user['ROLE'];
+
+                    // Redirect based on role
+                    switch ($user['ROLE']) {
+                        case 'admin':
+                            header("Location: ../FrontEnd/admindashboard.php");
+                            break;
+                        case 'trader':
+                            header("Location: ../FrontEnd/trader_dashboard.php");
+                            break;
+                        case 'customer':
+                            header("Location: ../FrontEnd/home.php");
+                            break;
+                        default:
+                            $error_msg = "Unknown user role.";
+                            break;
+                    }
+                    exit();
+                } else {
+                    $error_msg = "Invalid email or password.";
+                }
+            } else {
+                $e = oci_error($stmt);
+                $error_msg = "Query failed: " . $e['message'];
+            }
+
+            oci_free_statement($stmt);
+            oci_close($conn);
+        } else {
+            $error_msg = "Database connection failed.";
+        }
     }
 }
 ?>
@@ -41,38 +64,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login form</title>
-    <link rel="stylesheet" href="logincss.css">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
 
 <div class="background">
-        <div class="overlay"></div>
+    <div class="overlay"></div>
 </div>
-    
+
 <div class="login-container">
     <h2>LOGIN</h2>
     <p>LOG IN TO YOUR ACCOUNT</p>
 
+    <?php if (!empty($error_msg)): ?>
+        <div style="color: red; text-align:center; margin-bottom: 10px;">
+            <?= htmlspecialchars($error_msg) ?>
+        </div>
+    <?php endif; ?>
+
     <form action="login.php" method="POST">
         <input type="email" name="email" placeholder="Email Address" required>
         <input type="password" name="password" placeholder="Password" required>
-       
+
         <div class="terms">
-            <input type="checkbox">
-            <span>Keep me Logged In.</span>
+            <input type="checkbox" id="keepLoggedIn">
+            <span for="keepLoggedIn">Keep me Logged In</span>
             <div class="forgotpw">
                 <a href="#">Forgot Password</a>
             </div>
         </div>
+
         <button type="submit">Log In</button>
     </form>
 
     <p>OR</p>
     <div class="social-icons">
-        <img src="image/google.svg" width="10" height="10" alt="Google">
-        <img src="image/apple.svg" alt="Apple">
-        <img src="image/facebook.svg" alt="Facebook">
+        <img src="image/google.svg" width="20" height="20" alt="Google">
+        <img src="image/apple.svg" width="20" height="20" alt="Apple">
+        <img src="image/facebook.svg" width="20" height="20" alt="Facebook">
     </div>
 
     <p>Don't have an account yet? <a href="user_selection.php">Sign up</a></p>

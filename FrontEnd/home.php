@@ -1,201 +1,258 @@
+<?php
+session_start();
+include "header.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar</title>
-    <link rel="stylesheet" href="Style- home.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8" />
+  <title>Landing page</title>
+  <!-- Google Font: Rubik (Example) -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="homestyle.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-</head>
-<body class="showCart">
-    <nav class="navbar">
-        <div class="nav-links">
-            <a href="#">Shop</a>
-            <a href="#">Services</a>
-            <a href="#">About us</a>
-            <a href="#">Contact us</a>
-        </div>
-        <div class="logo">Logo</div>
-        <div class="auth-icons">
-            <div class="auth-buttons">
-                <button>Sign in</button>
-                <button>Log in</button>
-            </div>
-            <div class="icons">
-                <input type="text" placeholder="Search Product" class="search">
-                <div style="position: relative; display: inline-block;">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span id="cart-count">0</span> <!-- Cart Badge -->
-                </div>
-            </div>
-        </div>
-    </nav>
 
-    <div class="images">
-        <img src="image\groceries-1343141_640.jpg" alt="" class="image1">
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay">
+      <div class="hero-section">
+        <div class="hero-text">
+          <h1>Too Busy to Shop?<br>Let Us Deliver to Your Door!</h1>
+          <p>Enjoy quality shopping from your favourite local traders. Order now and collect your order at our convenient pickup point.</p>
+          <a href="#" class="shop-btn">SHOP NOW</a>
+        </div>
+        <div class="hero-image">
+          <img src="image/bag_cutout.png" alt="Groceries Bag">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- featured product section -->
+  <section class="shop-section">
+    <h2 class="title">SHOP BY TYPE</h2>
+    <div class="card-container">
+      <div class="card">
+        <img src="image/meat.png" alt="Meats">
+        <div class="label">MEATS</div>
+      </div>
+      <div class="card">
+        <img src="image/fish.avif" alt="Fish">
+        <div class="label">FISH</div>
+      </div>
+      <div class="card">
+        <img src="image/green.avif" alt="Greens">
+        <div class="label">GREENS</div>
+      </div>
+      <div class="card">
+        <img src="image/baked.avif" alt="Baked">
+        <div class="label">BAKED</div>
+      </div>
+      <div class="card">
+        <img src="image/delicatessen.avif" alt="Delicatessen">
+        <div class="label">DELICATESSEN</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- recomended items -->
+  <section class="recommended-section">
+    <h2 class="title">RECOMMENDED</h2>
+    <div class="grid-container">
+      <!-- Product Card (Repeat for multiple products) -->
+      <div class="card">
+        <img src="image/meat.png" alt="Product Image">
+        <div class="card-content">
+          <h3>Product Name</h3>
+          <p class="rating">★★★★★</p>
+          <p><span class="shop-name">By: Shop Name</span></p>
+          <p class="price">Price</p>
+          <button class="add-to-cart"> View Product</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="image/meat.png" alt="Product Image">
+        <div class="card-content">
+          <h3>Product Name</h3>
+          <p class="rating">★★★★★</p>
+          <p><span class="shop-name">By: Shop Name</span></p>
+          <p class="price">Price</p>
+          <button class="add-to-cart"> View Product</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="image/meat.png" alt="Product Image">
+        <div class="card-content">
+          <h3>Product Name</h3>
+          <p class="rating">★★★★★</p>
+          <p><span class="shop-name">By: Shop Name</span></p>
+          <p class="price">Price</p>
+          <button class="add-to-cart"> View Product</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="image/meat.png" alt="Product Image">
+        <div class="card-content">
+          <h3>Product Name</h3>
+          <p class="rating">★★★★★</p>
+          <p><span class="shop-name">By: Shop Name</span></p>
+          <p class="price">Price</p>
+          <button class="add-to-cart"> View Product</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="image/meat.png" alt="Product Image">
+        <div class="card-content">
+          <h3>Product Name</h3>
+          <p class="rating">★★★★★</p>
+          <p><span class="shop-name">By: Shop Name</span></p>
+          <p class="price">Price</p>
+          <button class="add-to-cart"> View Product</button>
+        </div>
+      </div>
     </div>
 
-<div class="product-container">
-    <div class="container">
-        <div class="title">NEW ARRIVAL</div>
-        <div class="title-underline"></div>
-        <div class="products">
-            <div class="product">
-                <img src="image/360_F_236881295_odo9H1vtTZUvewumPdeRE4tHUtVa2UJg.jpg" alt="Product Image">
-                <div class="name">Fresh Mustang Apple | 1Kg</div>
-                <div class="price">Rs.250</div>
-                <button onclick="addToCart('Fresh Mustang Apple', 250, 'image/360_F_236881295_odo9H1vtTZUvewumPdeRE4tHUtVa2UJg.jpg')">
-                    ADD TO CART
-                </button>                
-            </div>
-            <div class="product">
-                <img src="placeholder.png" alt="Product Image">
-                <div class="name">Name</div>
-                <div class="price">Price</div>
-                <button>ADD TO CART</button>
-            </div>
-            <div class="product">
-                <img src="placeholder.png" alt="Product Image">
-                <div class="name">Name</div>
-                <div class="price">Price</div>
-                <button>ADD TO CART</button>
-            </div>
-            <div class="product">
-                <img src="placeholder.png" alt="Product Image">
-                <div class="name">Name</div>
-                <div class="price">Price</div>
-                <button>ADD TO CART</button>
-            </div>
-            <div class="product">
-                <img src="placeholder.png" alt="Product Image">
-                <div class="name">Name</div>
-                <div class="price">Price</div>
-                <button>ADD TO CART</button>
-            </div>
+    <div class="grid-container">
+      <!-- Product Card (Repeat for multiple products) -->
+      <div class="card">
+        <img src="image/meat.png" alt="Product Image">
+        <div class="card-content">
+          <h3>Product Name</h3>
+          <p class="rating">★★★★★</p>
+          <p><span class="shop-name">By: Shop Name</span></p>
+          <p class="price">Price</p>
+          <button class="add-to-cart"> View Product</button>
         </div>
+      </div>
+
+      <div class="card">
+        <img src="image/meat.png" alt="Product Image">
+        <div class="card-content">
+          <h3>Product Name</h3>
+          <p class="rating">★★★★★</p>
+          <p><span class="shop-name">By: Shop Name</span></p>
+          <p class="price">Price</p>
+          <button class="add-to-cart"> View Product</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="image/meat.png" alt="Product Image">
+        <div class="card-content">
+          <h3>Product Name</h3>
+          <p class="rating">★★★★★</p>
+          <p><span class="shop-name">By: Shop Name</span></p>
+          <p class="price">Price</p>
+          <button class="add-to-cart"> View Product</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="image/meat.png" alt="Product Image">
+        <div class="card-content">
+          <h3>Product Name</h3>
+          <p class="rating">★★★★★</p>
+          <p><span class="shop-name">By: Shop Name</span></p>
+          <p class="price">Price</p>
+          <button class="add-to-cart"> View Product</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="image/meat.png" alt="Product Image">
+        <div class="card-content">
+          <h3>Product Name</h3>
+          <p class="rating">★★★★★</p>
+          <p><span class="shop-name">By: Shop Name</span></p>
+          <p class="price">Price</p>
+          <button class="add-to-cart"> View Product</button>
+        </div>
+      </div>
     </div>
 
-    <div class="container">
-        <div class="title">TOP SELLING</div>
-        <div class="title-underline"></div>
-        <div class="products">
-            <div class="product">
-                <img src="image/360_F_236881295_odo9H1vtTZUvewumPdeRE4tHUtVa2UJg.jpg" alt="Product Image">
-                <div class="name">Name</div>
-                <div class="price">Price</div>
-                <button>ADD TO CART</button>
-            </div>
-            <div class="product">
-                <img src="placeholder.png" alt="Product Image">
-                <div class="name">Name</div>
-                <div class="price">Price</div>
-                <button>ADD TO CART</button>
-            </div>
-            <div class="product">
-                <img src="placeholder.png" alt="Product Image">
-                <div class="name">Name</div>
-                <div class="price">Price</div>
-                <button>ADD TO CART</button>
-            </div>
-            <div class="product">
-                <img src="placeholder.png" alt="Product Image">
-                <div class="name">Name</div>
-                <div class="price">Price</div>
-                <button>ADD TO CART</button>
-            </div>
-            <div class="product">
-                <img src="placeholder.png" alt="Product Image">
-                <div class="name">Name</div>
-                <div class="price">Price</div>
-                <button>ADD TO CART</button>
-            </div>
-        </div>
-    </div>
-</div>
+  </section>
 
-    <div class="cartTab">
-        <h1>Shopping Cart</h1>
-        <div class="listCart">
-            <div class="item">
-                <div class="image">
-                    <img src="image/360_F_236881295_odo9H1vtTZUvewumPdeRE4tHUtVa2UJg.jpg" alt="">
-                </div>
-                <div class="name">
-                    NAME
-                </div>
-                <div class="totalPrice">
-                    RS.200
-                </div>
-                <div class="quantity">
-                    <span class="minus">-</span>
-                    <span>1</span>
-                    <span class="plus">+</span>
-                </div>
-            </div>
-            
-        </div>
-        <div class="btn">
-            <button class="close">CLOSE</button>
-            <button class="checkOut">CHECK OUT</button>
-        </div>
-    </div>
 
-    <div class="footer-section">
-        <div class="footer-background"></div>
-        <div class="footer-content">
-            <div class="footer-left">
-                <h2 class="footer-title">CLECKHUDDERS MARKET</h2>
-            </div>
-            
-            <div class="footer-middle">
-                <div class="company-section">
-                    <h3>CLECKHUDDERS MARKET</h3>
-                    <div class="contact-info">
-                        Phone: +977 9874561230<br>
-                        Email: checkhudderes@gmail.com<br>
-                        Address:Thapathali, Trade Tower
-                    </div>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon">
-                            <i class="fa-brands fa-facebook"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fa-brands fa-facebook-messenger"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fa-brands fa-square-instagram"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i><i class="fa-brands fa-x-twitter"></i></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fa-brands fa-google"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fa-brands fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-right">
-                <div class="company-section">
-                    <h3>RECENT NEWS</h3>
-                    <div class="footer-links">
-                        <a href="#">About Us</a>
-                        <a href="#">Services</a>
-                        <a href="#">Get In Touch</a>
-                    </div>
-                </div>
-            </div>
+  <!-- best deals -->
+
+  <section class="deals-section">
+    <h2 class="section-title">BEST DEALS</h2>
+    <?php include "product_list.php";?>
+    <div class="product-grid">
+      <!-- Product Card -->
+      <div class="product-card">
+        <img src="image/meat.png" alt="Product Image">
+        <div class="product-info">
+          <h3>Product Name</h3>
+          <p class="stars">★★★★★</p>
+          <p>By: <span class="shop-name">Shop Name</span></p>
+          <p><strong>Price</strong></p>
+          <p>Qty <input type="number" value="1" min="1" max="99"></p>
         </div>
-        
-        <div class="footer-bottom">
-            <div class="copyright">© Copyright 2025 CLECKHUDDERS MARKET - All Rights Reserved</div>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="image/meat.png" alt="Product Image">
+        <div class="product-info">
+          <h3>Product Name</h3>
+          <p class="stars">★★★★★</p>
+          <p>By: <span class="shop-name">Shop Name</span></p>
+          <p><strong>Price</strong></p>
+          <p>Qty <input type="number" value="1" min="1" max="99"></p>
         </div>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="image/meat.png" alt="Product Image">
+        <div class="product-info">
+          <h3>Product Name</h3>
+          <p class="stars">★★★★★</p>
+          <p>By: <span class="shop-name">Shop Name</span></p>
+          <p><strong>Price</strong></p>
+          <p>Qty <input type="number" value="1" min="1" max="99"></p>
+        </div>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="image/meat.png" alt="Product Image">
+        <div class="product-info">
+          <h3>Product Name</h3>
+          <p class="stars">★★★★★</p>
+          <p>By: <span class="shop-name">Shop Name</span></p>
+          <p><strong>Price</strong></p>
+          <p>Qty <input type="number" value="1" min="1" max="99"></p>
+        </div>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="image/meat.png" alt="Product Image">
+        <div class="product-info">
+          <h3>Product Name</h3>
+          <p class="stars">★★★★★</p>
+          <p>By: <span class="shop-name">Shop Name</span></p>
+          <p><strong>Price</strong></p>
+          <p>Qty <input type="number" value="1" min="1" max="99"></p>
+        </div>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
     </div>
-    <script src="cart.js"></script>
+  </section>
+
+  <!-- FOOTER -->
+  <?php
+    include "footer.php";
+  ?>
 </body>
-</html>
-
